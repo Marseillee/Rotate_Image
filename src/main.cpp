@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <opencv2/opencv.hpp>
 
 
@@ -6,13 +6,13 @@ using namespace cv;
 
 Mat RotateImage(Mat image, double degree_angle)
 {
-	// Создание матрцы, состоящей из нулей с размерами исходной матрицы
+	// РЎРѕР·РґР°РЅРёРµ РјР°С‚СЂС†С‹, СЃРѕСЃС‚РѕСЏС‰РµР№ РёР· РЅСѓР»РµР№ СЃ СЂР°Р·РјРµСЂР°РјРё РёСЃС…РѕРґРЅРѕР№ РјР°С‚СЂРёС†С‹
 	Mat new_image = cv::Mat::zeros(Size(image.cols, image.rows), CV_8UC3);
 
-	// Задание угла в радианах
+	// Р—Р°РґР°РЅРёРµ СѓРіР»Р° РІ СЂР°РґРёР°РЅР°С…
 	double angle = degree_angle * CV_PI / 180;
 
-	// Задание центра масс, относительно которого будет произведен поворот
+	// Р—Р°РґР°РЅРёРµ С†РµРЅС‚СЂР° РјР°СЃСЃ, РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РєРѕС‚РѕСЂРѕРіРѕ Р±СѓРґРµС‚ РїСЂРѕРёР·РІРµРґРµРЅ РїРѕРІРѕСЂРѕС‚
 	double xc = 0.5 * (image.cols - 1);
 	double yc = 0.5 * (image.rows - 1);
 
@@ -21,7 +21,7 @@ Mat RotateImage(Mat image, double degree_angle)
 	{
 		for (int y = 0; y < new_image.rows; y++)
 		{
-			// Аффинное преобразование координаты каждого пикселя
+			// РђС„С„РёРЅРЅРѕРµ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚С‹ РєР°Р¶РґРѕРіРѕ РїРёРєСЃРµР»СЏ
 			xn = xc + (x - xc) * cos(angle) - (y - yc) * sin(angle);
 			yn = yc + (x - xc) * sin(angle) + (y - yc) * cos(angle);
 
@@ -36,11 +36,11 @@ Mat RotateImage(Mat image, double degree_angle)
 
 int main() 
 {
-	// Чтение изображения
+	// Р§С‚РµРЅРёРµ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 	Mat image = imread("B:/PRGNG/STC/Rotate_Image/images/WhataTwist.png");
 	
 	/*
-	// Поворот изображения готовым методом из библиотки
+	// РџРѕРІРѕСЂРѕС‚ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РіРѕС‚РѕРІС‹Рј РјРµС‚РѕРґРѕРј РёР· Р±РёР±Р»РёРѕС‚РєРё
 	Point2f center(new_image.cols / 2, new_image.rows / 2);
 	double angle = 90;
 	double scale = 1;
@@ -51,12 +51,12 @@ int main()
 	warpAffine(new_image, destMat, matrix, new_image.size());
 	*/
 	
-	// Задание угла в градусах
+	// Р—Р°РґР°РЅРёРµ СѓРіР»Р° РІ РіСЂР°РґСѓСЃР°С…
 	double degree_angle;
 	std::cin >> degree_angle;
 	Mat OutputImage = RotateImage(image, degree_angle);
 
-	// Отображение оригинального изображения и повернутого
+	// РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РѕСЂРёРіРёРЅР°Р»СЊРЅРѕРіРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ Рё РїРѕРІРµСЂРЅСѓС‚РѕРіРѕ
 	imshow("Original", image);
 	imshow("Result", OutputImage);
 	waitKey(0);
