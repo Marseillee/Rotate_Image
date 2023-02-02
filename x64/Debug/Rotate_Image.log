@@ -1,0 +1,4 @@
+﻿  main.cpp
+B:\PRGNG\STC\Rotate_Image\main.cpp(25,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+B:\PRGNG\STC\Rotate_Image\main.cpp(26,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Rotate_Image.vcxproj -> B:\PRGNG\STC\Rotate_Image\x64\Debug\Rotate_Image.exe
